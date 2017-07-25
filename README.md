@@ -12,14 +12,16 @@ If you don't have a zabbix server, recommend use docker to setup test environmen
 https://hub.docker.com/u/zabbix/
 
 Support zabbix server 2.4/3.0.
+Dependencies: javax.json, gson
 
 
-##Example
+
+##Example/Usage
 
 Zabbix Sender do not create host/item, you have to create them by yourself, or try to use [zabbix-api](https://github.com/hengyunabc/zabbix-api).
 
 1. Create/select a host in zabbix server.
-1. Create a item in zabbix server, which name is "testItem", type is "Zabbix trapper".
+1. Create a item in zabbix server, which name is "test_item", type is "Zabbix trapper".
 1. Send data.
 1. If success, you can find data in web browser. Open "Monitoring"/"Latest data", then filter with Item name or Hosts.
 
@@ -29,7 +31,7 @@ Zabbix Sender do not create host/item, you have to create them by yourself, or t
 		ZabbixSender zabbixSender = new ZabbixSender(host, port);
 
 		DataObject dataObject = new DataObject();
-		dataObject.setHost("172.17.42.1");
+		dataObject.setHost("test_host");
 		dataObject.setKey("test_item");
 		dataObject.setValue("10");
 		// TimeUnit is SECONDS.
@@ -47,16 +49,11 @@ Zabbix Sender do not create host/item, you have to create them by yourself, or t
 ## Maven dependency
 
 ```xml
-<dependency>
-    <groupId>io.github.hengyunabc</groupId>
-    <artifactId>zabbix-sender</artifactId>
-    <version>0.0.4</version>
-</dependency>
+
 ```
 
-## Others
-
-https://github.com/hengyunabc/zabbix-api
+## Forked from
+https://github.com/hengyunabc/zabbix-sender
 
 ## License
 Apache License V2

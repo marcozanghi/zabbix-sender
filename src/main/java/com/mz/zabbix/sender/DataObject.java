@@ -1,6 +1,7 @@
-package io.github.hengyunabc.zabbix.sender;
+package com.mz.zabbix.sender;
 
-import com.alibaba.fastjson.JSON;
+
+import com.google.gson.Gson;
 
 public class DataObject {
 	long clock;
@@ -95,7 +96,7 @@ public class DataObject {
 
 	@Override
 	public String toString(){
-		return JSON.toJSONString(this);
+	    return new Gson().toJson(this);
 	}
 
 }

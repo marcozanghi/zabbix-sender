@@ -1,20 +1,25 @@
-package io.github.hengyunabc.zabbix.sender;
+package com.mz.zabbix.sender;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.StringReader;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.codec.Charsets;
 
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
+
 /**
+ * @author m.zanghi
  *
+ * from io.github.hengyunabc.zabbix.sender
  * @author hengyunabc
  *
  */
@@ -109,7 +114,9 @@ public class ZabbixSender {
 			// header('ZBXD\1') + len + 0
 			// 5 + 4 + 4
 			String jsonString = new String(responseData, 13, readCount - 13, Charsets.UTF_8);
-			JSONObject json = JSON.parseObject(jsonString);
+			JsonReader jsonReader = Json.createReader(new StringReader(jsonString));
+			JsonObject json = jsonReader.readObject();
+
 			String info = json.getString("info");
 			// example info: processed: 1; failed: 0; total: 1; seconds spent:
 			// 0.000053

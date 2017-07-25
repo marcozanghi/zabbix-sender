@@ -1,9 +1,12 @@
-package io.github.hengyunabc.zabbix.sender;
+package com.mz.zabbix.sender;
 
-import com.alibaba.fastjson.JSON;
+
+import com.google.gson.Gson;
 
 /**
- * 
+ * @author m.zanghi
+ *
+ * from io.github.hengyunabc.zabbix.sender
  * @author hengyunabc
  *
  */
@@ -66,6 +69,6 @@ public class SenderResult {
 
 	@Override
 	public String toString() {
-		return JSON.toJSONString(this);
+		return new Gson().toJson(this);
 	}
 }
